@@ -40,7 +40,7 @@ public class Test {
 		csp.variables.add(T);
 		for(Variable i: csp.variables) {
 			csp.unassignedVar.add(i);
-			csp.assignments.put(i, null);
+			csp.assignments.put(i, "");
 		}
 		csp.constraints.add(new Constraint(SA,WA));
 		csp.constraints.add(new Constraint(SA,NT));
@@ -57,11 +57,11 @@ public class Test {
 	}
 	
 	public static void printMap(HashMap<Variable,String> assignments) {
+		System.out.println(assignments.size());
 		for (Entry<Variable, String> entry : assignments.entrySet()) {
 		    Variable key = entry.getKey();
 		    String value = entry.getValue();
 		    System.out.println("Variable: "+key.name+" "+"Value: "+value);
-		    // ...
 		}
 	}
 
