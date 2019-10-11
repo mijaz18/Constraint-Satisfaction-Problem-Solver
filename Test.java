@@ -57,7 +57,7 @@ public class Test {
 	}
 	
 	public static void printMap(HashMap<Variable,String> assignments) {
-		System.out.println(assignments.size());
+		//System.out.println(assignments.size());
 		for (Entry<Variable, String> entry : assignments.entrySet()) {
 		    Variable key = entry.getKey();
 		    String value = entry.getValue();
