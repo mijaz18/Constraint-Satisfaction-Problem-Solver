@@ -4,11 +4,12 @@ import java.util.Set;
 
 public class Variable {
 	
-	String name;
-	Set<String> domains= new HashSet<String>();
+	Object value;
+	Set<Object> domains= new HashSet<Object>();
+	int time;
 	
-	Variable(String name,Set<String> domain) {
-		this.name=name;
+	Variable(Object value,Set<Object> domain) {
+		this.value=value;
 		this.domains=domain;
 		
 	}

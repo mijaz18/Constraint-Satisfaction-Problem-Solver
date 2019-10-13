@@ -1,59 +1,96 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Stack;
+
+import javax.swing.SpringLayout.Constraints;
 
 
 public class Backtracking_Search {
 	
-	public HashMap<Variable,String> backtrackingSearch(CSP csp) {
-		return backtrack(csp.assignments,csp);
+	HashMap<Variable,String> a=new HashMap<Variable,String>();
+	
+	public Assignments backtrackingSearch(CSP csp) {
+		return backtrack(new Assignments(),csp);
+		
 	}
-	public HashMap<Variable,String> backtrack(HashMap<Variable,String> assignments,CSP csp){
-		int check=0;
-		for(String i: assignments.values()) {
-			if(i.equals("")) {
-			check++;
-		}
-		}if(check==0){
+	
+	
+	public Assignments backtrack(Assignments assignments,CSP csp){
+		int cons=0;
+		Assignments result=new Assignments();
+		if(isComplete(assignments.map,csp)==true) {
 			return assignments;
 		}else {
-			//System.out.println("Reached here");
-			Variable var=csp.unassignedVar.peek();
-			System.out.println(var.name);
-			csp.unassignedVar.pop();
-			for(String i:var.domains) {
-				//System.out.println(var.domains.size());
+			csp.unassignedVar=setAssigned(assignments.map,csp);
+			Variable var= csp.unassignedVar.get(0);
+			
+			//System.out.println(var.value);
+			for(Object i:var.domains) {
+				cons=0;
 				for(Constraint x: csp.constraints) {
-					//System.out.println("Checking a "+ x.a.name +" "+"Variable b: "+x.b.name+" Variable var "+ var.name);
-					//System.out.println("Checking b "+ assignments.get(x.b) +" "+"Value of i "+ i);
-					//System.out.println(assignments.size());
-					//System.out.println(assignments.get(x.b));
-					System.out.println("A: "+ x.a.name+ " Value: "+assignments.get(x.a));
-					System.out.println("B: "+ x.b.name + " Value: "+assignments.get(x.b));
-					System.out.println("Var: "+ var.name+ " Value: "+assignments.get(var));
-					if((x.a.equals(var) && !assignments.get(x.b).equals(i)) ) {
-							System.out.println("A WORKS");
-							System.out.println();
-							//System.out.println("Variable value "+ var.name);
-							//System.out.println("Value of variable "+ i);
-							assignments.put(var, i);
-							System.out.println(assignments.size());
-							return backtrack(assignments,csp);
-					}else if((x.b.equals(var) && !assignments.get(x.a).equals(i))){
-							System.out.println("B WORKS");
-							System.out.println();
-							assignments.put(var, i);
-							return backtrack(assignments,csp);
-					}else if(!x.a.equals(var) && !x.b.equals(var)) {
-							System.out.println("C WORKS");
-							System.out.println();
-							assignments.put(var, i);
-							return backtrack(assignments,csp);
+					if(x.consistencyCheck(i,x,var,assignments.map,csp)) {
+						cons++;
+					}else {
+						cons=0;
 					}
 				}
+				if(cons==csp.constraints.size()) {
+					assignments.map.put(var, i);
+					//printMap(assignments.map);
+					//System.out.println();
+					result=backtrack(assignments,csp);
+					if(!(result==null)) {
+						return result;
+					}else {
+						assignments.map.remove(var,i);		
+				}
+					
+				}
+			}
+		}
+			return null;		
+	}
+	
+	
+	public static boolean isComplete(HashMap<Variable,Object> assignments,CSP csp) {
+		ArrayList<Variable> v=setAssigned(assignments,csp);
+			if(v.size()==0) {
+				return true;
+			}else {
+				return false;
 			}
 			
 		}
-		return assignments;
-			
+	
+	public static ArrayList<Variable> setAssigned(HashMap<Variable,Object> assignments, CSP csp) {
+		ArrayList<Variable> s=new ArrayList<Variable>();
+		boolean check=true;
+			for (Variable y: csp.variables) {
+				check=true;
+				for(Variable x: assignments.keySet()) {
+					if(y.equals(x)) {
+						//System.out.println("UUUUUUUUUU");
+					check=false;	
+					}
+				}
+				if(check==true) {
+					//System.out.println("UUUUUUUUUU");
+					s.add(y);
+				}
+			}
+			return s;
+		
+	}
+	
+	public static void printMap(HashMap<Variable,Object> assignments) {
+		//System.out.println(assignments.size());
+		for (Entry<Variable, Object> entry : assignments.entrySet()) {
+		    Variable key = entry.getKey();
+		    Object value = entry.getValue();
+		    System.out.println("Variable: "+key.value+" "+"Value: "+value);
 		}
+	}
+	
 	}
