@@ -13,30 +13,32 @@ public class TimeConstraint extends Constraint {
 
 	@Override
 	boolean consistencyCheck(Object value, Constraint x, Variable var, HashMap<Variable, Object> assignments, CSP csp) {
-		boolean check=true;
-		if((x.a.equals(var)) && (!assignments.containsKey(x.b))) {
-			return true;
-		}else if((x.a.equals(var)) && (assignments.containsKey(x.b))){
-			int val2=(Integer)assignments.get(x.b);
-			if(((Integer)value+ x.a.time<= val2)) {
+		int val= (int)value;
+		//System.out.println("Variable "+ var.value);
+		if(a.equals(var) || b.equals(var)) {
+			if((x.a.equals(var)) && (!assignments.containsKey(x.b))) {
 				return true;
-			}else {
-				return false;
-			}
-		}else if((x.b.equals(var)) && (!assignments.containsKey(x.a))) {
-			return true;
-		}else if((x.b.equals(var)) && (assignments.containsKey(x.a))){
-			int val2=(Integer)assignments.get(x.a);
-			if(((Integer)value+ x.b.time<= val2)) {
+				
+			} if((x.a.equals(var)) && (assignments.containsKey(x.b))){
+				int val2=(int)assignments.get(x.b);
+				if((val+ x.a.time<= val2)) {
+					return true;
+				}
+				
+			}else if((x.b.equals(var)) && (!assignments.containsKey(x.a))) {
 				return true;
-			}else {
-				return false;
-			}
-		}else if(!x.a.equals(var) && !x.b.equals(var)) {
-			return true;
-		}else {
+				
+			} if((x.b.equals(var)) && (assignments.containsKey(x.a))){
+				int val1=(int)assignments.get(x.a);
+				if((val+ x.b.time<= val1)) {
+					return true;
+				}
+			}else if(!x.a.equals(var) && !x.b.equals(var)) {
+				return true;
+			} 
 			return false;
 		}
+		return true;
 	}
 
 }

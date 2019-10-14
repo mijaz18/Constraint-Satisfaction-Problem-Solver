@@ -10,7 +10,7 @@ public class JobScheduling {
 		Set<Constraint> constraints=new HashSet<Constraint>();
 		Assignments result=new Assignments();
 		CSP csp=new CSP(variables,constraints);
-		for(int i=1; i<=27;i++) {
+		for(int i=1; i<=30;i++) {
 			domains.add(i);
 		}
 		Variable Axle_f= new Variable("Axle_f",domains);
@@ -58,6 +58,7 @@ public class JobScheduling {
 		csp.variables.add(Cap_rb);
 		csp.variables.add(Cap_lb);
 		csp.variables.add(Inspect);
+		csp.constraints.add(new DisjunctiveConstraint(Axle_f,Axle_b));
 		csp.constraints.add(new TimeConstraint(Axle_f,Wheel_rf));
 		csp.constraints.add(new TimeConstraint(Axle_f,Wheel_lf));
 		csp.constraints.add(new TimeConstraint(Axle_b,Wheel_rb));
@@ -74,17 +75,16 @@ public class JobScheduling {
 		csp.constraints.add(new TimeConstraint(Cap_rb,Inspect));
 		csp.constraints.add(new TimeConstraint(Cap_lf,Inspect));
 		csp.constraints.add(new TimeConstraint(Cap_rf,Inspect));
-		//csp.constraints.add(new TimeConstraint(Nuts_rf,Inspect));
-		//csp.constraints.add(new TimeConstraint(Nuts_lf,Inspect));
-		//csp.constraints.add(new TimeConstraint(Nuts_rb,Inspect));
-		//csp.constraints.add(new TimeConstraint(Nuts_lb,Inspect));
-		//csp.constraints.add(new TimeConstraint(Wheel_rf,Inspect));
-		//csp.constraints.add(new TimeConstraint(Wheel_lf,Inspect));
-		//csp.constraints.add(new TimeConstraint(Wheel_rb,Inspect));
-		//csp.constraints.add(new TimeConstraint(Wheel_lb,Inspect));
-		//csp.constraints.add(new TimeConstraint(Axle_f,Inspect));
-		//csp.constraints.add(new TimeConstraint(Axle_b,Inspect));
-		//csp.constraints.add(new TimeConstraint(Axle_f,Axle_b));
+		csp.constraints.add(new TimeConstraint(Nuts_rf,Inspect));
+		csp.constraints.add(new TimeConstraint(Nuts_lf,Inspect));
+		csp.constraints.add(new TimeConstraint(Nuts_rb,Inspect));
+		csp.constraints.add(new TimeConstraint(Nuts_lb,Inspect));
+		csp.constraints.add(new TimeConstraint(Wheel_rf,Inspect));
+		csp.constraints.add(new TimeConstraint(Wheel_lf,Inspect));
+		csp.constraints.add(new TimeConstraint(Wheel_rb,Inspect));
+		csp.constraints.add(new TimeConstraint(Wheel_lb,Inspect));
+		csp.constraints.add(new TimeConstraint(Axle_f,Inspect));
+		csp.constraints.add(new TimeConstraint(Axle_b,Inspect));
 		//csp.constraints.add(new TimeConstraint(Axle_b,Axle_f));
 		
 		Backtracking_Search bk=new Backtracking_Search();

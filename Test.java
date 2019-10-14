@@ -11,14 +11,23 @@ public class Test {
 		AustraliaMapCSP aus=new AustraliaMapCSP();
 		NQueen nq=new NQueen();
 		JobScheduling js=new JobScheduling();
+		Y_XSquare xy=new Y_XSquare();
+		Mackworth mw=new Mackworth();
+		
 		//result=aus.AustraliaMapCSP();
 
 		long start = new Date().getTime();
 		//result=nq.NQueen(5);
 		result=js.JobScheduling();
+		//result=mw.Mackworth();
+		//result=xy.Y_XSquare();
 		long end = new Date().getTime();
 		System.out.format("time: %.3f secs\n", (end-start)/1000.0);
-		printMap(result.map);
+		if(result==null) {
+			System.out.println("Not possible");
+		}else {
+			printMap(result.map);
+		}
 		//System.out.println(result.map.size());
 		//System.out.println("Complete");
 		//Backtracking_Search bk=new Backtracking_Search();
