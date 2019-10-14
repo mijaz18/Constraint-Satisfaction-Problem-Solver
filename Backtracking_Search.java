@@ -31,6 +31,7 @@ public class Backtracking_Search {
 			
 			//System.out.println(var.value);
 			for(Object i:var.domains) {
+				System.out.println("Domain " +i);
 				cons=0;
 				long start = new Date().getTime();
 				for(Constraint x: csp.constraints) {
@@ -47,6 +48,7 @@ public class Backtracking_Search {
 				long end = new Date().getTime();
 				//System.out.format("time: %.3f secs\n", (end-start)/1000.0);
 				if(cons==csp.constraints.size()) {
+					System.out.println("Variable chosen "+ var.value);
 					assignments.map.put(var, i);
 					printMap(assignments.map);
 					System.out.println();
