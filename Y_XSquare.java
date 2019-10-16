@@ -13,7 +13,7 @@ public class Y_XSquare {
 		Set<Constraint> constraints=new HashSet<Constraint>();
 		Assignments result=new Assignments();
 		CSP csp=new CSP(variables,constraints);
-		for(int i=0;i<=9;i++) {
+		for(int i=0;i<=16;i++) {
 			domainx.add(i);
 			domainy.add(i);
 		}

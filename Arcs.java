@@ -9,7 +9,7 @@ public class Arcs {
 	Variable a;
 	Variable b;
 	
-	boolean consistencyCheck(Object a, Variable b) {
+	boolean consistencyCheck(Object a, Variable b, CSP csp) {
 		return false;
 	}
 

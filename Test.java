@@ -17,10 +17,10 @@ public class Test {
 		//result=aus.AustraliaMapCSP();
 
 		long start = new Date().getTime();
-		result=nq.NQueen(5);
+		//result=nq.NQueen(5);
 		//result=js.JobScheduling();
 		//result=mw.Mackworth();
-		//result=xy.Y_XSquare();
+		result=xy.Y_XSquare();
 		long end = new Date().getTime();
 		System.out.format("time: %.3f secs\n", (end-start)/1000.0);
 		if(result==null) {

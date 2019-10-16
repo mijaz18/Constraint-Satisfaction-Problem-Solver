@@ -7,7 +7,7 @@ public class XYsquareArcY extends Arcs {
 	}
 	
 	@Override
-	boolean consistencyCheck(Object a, Variable b) {
+	boolean consistencyCheck(Object a, Variable b, CSP csp) {
 				int X= (int)a;
 				for(Object y: b.domains) {
 					int Y= (int) y;
