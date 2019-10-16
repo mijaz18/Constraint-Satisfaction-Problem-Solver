@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Map.Entry;
@@ -26,7 +27,7 @@ public class AC3 {
 			
 			//System.out.println(var.value);
 			//System.out.println("DOMAIN CHECK "+ var.domains.toString());
-			System.out.println("Domain before "+var.domains);
+			System.out.println("Variable "+ var.value+" Domain before "+var.domains);
 			for(Object i:var.domains) {
 				//System.out.println("Domain in Q "+ i);
 				cons=0;
@@ -46,7 +47,7 @@ public class AC3 {
 					assignments.map.put(var, i);
 					printMap(assignments.map);
 					inferences= AC_3(csp,assignments);
-					System.out.println("Domain After "+ var.domains);
+					System.out.println("Variable "+ var.value+" Domain After "+ var.domains);
 					if(inferences==true) {
 						result=backtrack(assignments,csp);
 						if(!(result==null)) {
@@ -77,7 +78,7 @@ public class AC3 {
 		while(!q.isEmpty()) {
 			Arcs ar=q.poll();
 			csp.arcs.remove(ar);
-			if(Revise(csp,ar.a,ar.b, assignments)) {
+			if(Revise(csp,ar.a,ar.b, ar)) {
 				if(ar.a.domains.size()==0) {
 					System.out.println("It worked");
 					return false;
@@ -93,28 +94,32 @@ public class AC3 {
 		return true;
 	}
 	
-	public static boolean Revise(CSP csp, Variable a, Variable b, Assignments assignments) {
+	public static boolean Revise(CSP csp, Variable a, Variable b, Arcs ar) {
 		boolean revised=false;
 		boolean check=false;
+		ArrayList<Integer> Index=new ArrayList<Integer>();
 		for(int i=0; i<a.domains.size(); i++) {
 			revised=false;
-			for(int j=0;j<b.domains.size()-1;j++) {
-				//int x= (int) a.domains.get(i);
-				//int y= (int) b.domains.get(j);
-				//System.out.println("Variable a: "+ ""+a.value+ ": "+(int)x+ " Variable b: "+ ""+b.value+ " "+ (int)y);
-				for(Constraint z: csp.constraints) {
-					if(z.consistencyCheck(a.domains.get(i),z,a,assignments.map,csp)) {
-						//System.out.println("TRUE");
-						revised=true;
+			//int x= (int) a.domains.get(i);
+			//int y= (int) b.domains.get(j);
+			//System.out.println("Variable a: "+ ""+a.value+ ": "+(int)x+ " Variable b: "+ ""+b.value+ " "+ (int)y);
+				if(ar.consistencyCheck(a.domains.get(i), b)) {
+					//System.out.println("TRUE");
+					revised=true;
 					}
-				}
 					if(revised==false) {
-						//System.out.println("VALUE removed"+ a.domains.get(i));
-						a.domains.remove(i);
+						System.out.println("VALUE removed"+ a.domains.get(i)+ "From Variable "+ a.value);
+						Object remove=a.domains.get(i);
+						a.domains.set(a.domains.indexOf(remove),null);
+						Index.add(i);
 						check=true;
-					}		
-				}
+					}	
+			}
+
+		for(int i=0; i<=Index.size()-1;i++) {
+			a.domains.remove(null);
 		}
+		System.out.println(a.domains);
 			return check;
 		}
 	

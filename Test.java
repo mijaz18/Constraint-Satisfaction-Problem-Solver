@@ -17,8 +17,8 @@ public class Test {
 		//result=aus.AustraliaMapCSP();
 
 		long start = new Date().getTime();
-		//result=nq.NQueen(5);
-		result=js.JobScheduling();
+		result=nq.NQueen(5);
+		//result=js.JobScheduling();
 		//result=mw.Mackworth();
 		//result=xy.Y_XSquare();
 		long end = new Date().getTime();

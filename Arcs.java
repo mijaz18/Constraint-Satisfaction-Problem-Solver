@@ -8,5 +8,9 @@ public class Arcs {
 	}
 	Variable a;
 	Variable b;
+	
+	boolean consistencyCheck(Object a, Variable b) {
+		return false;
+	}
 
 }
