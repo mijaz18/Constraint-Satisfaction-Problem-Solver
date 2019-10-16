@@ -5,14 +5,14 @@ import java.util.Set;
 public class Y_XSquare {
 	
 	public Assignments Y_XSquare() {
-		Set<Object> domains=new HashSet<Object>();
-		Set<Object> domainx=new HashSet<Object>();
-		Set<Object> domainy=new HashSet<Object>();
+		ArrayList<Object> domains=new ArrayList<Object>();
+		//ArrayList<Object> domainx=new ArrayList<Object>();
+		//Set<Object> domainy=new HashSet<Object>();
 		ArrayList<Variable> variables=new ArrayList<Variable>();
 		Set<Constraint> constraints=new HashSet<Constraint>();
 		Assignments result=new Assignments();
 		CSP csp=new CSP(variables,constraints);
-		for(int i=4;i<=16;i++) {
+		for(int i=0;i<=16;i++) {
 			domains.add(i);
 		}
 		Variable X=new Variable("X",domains);

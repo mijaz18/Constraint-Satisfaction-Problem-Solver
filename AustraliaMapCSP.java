@@ -5,7 +5,7 @@ import java.util.Set;
 public class AustraliaMapCSP {
 
 	public static Assignments AustraliaMapCSP() {
-		Set<Object> domains=new HashSet<Object>();
+		ArrayList<Object> domains=new ArrayList<Object>();
 		ArrayList<Variable> variables=new ArrayList<Variable>();
 		Set<Constraint> constraints=new HashSet<Constraint>();
 		Assignments result=new Assignments();

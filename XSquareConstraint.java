@@ -12,7 +12,7 @@ public class XSquareConstraint extends Constraint {
 
 	@Override
 	boolean consistencyCheck(Object value, Constraint x, Variable var, HashMap<Variable, Object> assignments, CSP csp) {
-		System.out.println("Domain "+ value);
+		//System.out.println("Domain "+ value);
 		boolean check=false;
 		int val=(int)value;
 		if(x.a.equals(var) && !assignments.containsKey(x.b)) {

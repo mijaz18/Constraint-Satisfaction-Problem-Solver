@@ -5,8 +5,8 @@ import java.util.Set;
 public class Mackworth {
 
 	public Assignments Mackworth() {
-		Set<Object> domain12=new HashSet<Object>();
-		Set<Object> domain35=new HashSet<Object>();
+		ArrayList<Object> domain12=new ArrayList<Object>();
+		ArrayList<Object> domain35=new ArrayList<Object>();
 		ArrayList<Variable> variables=new ArrayList<Variable>();
 		Set<Constraint> constraints=new HashSet<Constraint>();
 		Assignments result=new Assignments();
@@ -31,9 +31,9 @@ public class Mackworth {
 		csp.constraints.add(new LexicConstraint(X4,X3));
 		csp.constraints.add(new LexicConstraint(X5,X3));
 		csp.constraints.add(new LexicConstraint(X4,X5));
-		Backtracking_Search bk=new Backtracking_Search();
+		AC3 ac3=new AC3();
 		Assignments assignments=new Assignments();
-		result=bk.backtrack(assignments, csp);
+		result=ac3.backtrack(assignments, csp);
 		return result;
 	}
 }

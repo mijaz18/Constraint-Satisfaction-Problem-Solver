@@ -12,7 +12,9 @@ public class DisjunctiveConstraint extends Constraint {
 	@Override
 	boolean consistencyCheck(Object value, Constraint x, Variable var, HashMap<Variable, Object> assignments, CSP csp) {
 		//System.out.println("Variable name "+ var.value);
-		if(a.equals(var) || b.equals(var)) {
+		if(!a.equals(var) && !b.equals(var)) {
+			return true;
+		}else {
 			int val=(int) value;
 			if(x.a.equals(var) && !(assignments.containsKey(x.b))) {
 				return true;
@@ -32,6 +34,5 @@ public class DisjunctiveConstraint extends Constraint {
 			}
 			return false;
 			}
-		return true;
-	}	
+	}
 }

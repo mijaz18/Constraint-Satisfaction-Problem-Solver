@@ -5,10 +5,10 @@ import java.util.Set;
 public class Variable {
 	
 	Object value;
-	Set<Object> domains= new HashSet<Object>();
+	ArrayList<Object> domains= new ArrayList<Object>();
 	int time;
 	
-	Variable(Object value,Set<Object> domain) {
+	Variable(Object value,ArrayList<Object> domain) {
 		this.value=value;
 		this.domains=domain;
 		
