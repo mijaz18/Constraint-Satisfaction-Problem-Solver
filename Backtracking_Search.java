@@ -25,19 +25,12 @@ public class Backtracking_Search {
 			
 			return assignments;
 		}else {
-			//System.out.println("ffffffff");
 			csp.unassignedVar=setAssigned(assignments.map,csp);
 			Variable var= csp.unassignedVar.get(0);
-			
-			//System.out.println(var.value);
 			for(Object i:var.domains) {
-				//System.out.println("Domain " +i);
 				cons=0;
 				long start = new Date().getTime();
 				for(Constraint x: csp.constraints) {
-					//System.out.println(x.a.value);
-					//System.out.println(x.b.value);
-					//System.out.println();
 					if(x.consistencyCheck(i,x,var,assignments.map,csp)) {
 						cons++;
 					}else {
@@ -46,12 +39,8 @@ public class Backtracking_Search {
 					
 				}
 				long end = new Date().getTime();
-				//System.out.format("time: %.3f secs\n", (end-start)/1000.0);
 				if(cons==csp.constraints.size()) {
-					System.out.println("Variable chosen "+ var.value + "Value "+ i);
 					assignments.map.put(var, i);
-					printMap(assignments.map);
-					System.out.println();
 					result=backtrack(assignments,csp);
 					if(!(result==null)) {
 						return result;
@@ -83,12 +72,10 @@ public class Backtracking_Search {
 				check=true;
 				for(Variable x: assignments.keySet()) {
 					if(y.equals(x)) {
-						//System.out.println("UUUUUUUUUU");
 					check=false;	
 					}
 				}
 				if(check==true) {
-					//System.out.println("UUUUUUUUUU");
 					s.add(y);
 				}
 			}
@@ -97,7 +84,6 @@ public class Backtracking_Search {
 	}
 	
 	public static void printMap(HashMap<Variable,Object> assignments) {
-		//System.out.println(assignments.size());
 		for (Entry<Variable, Object> entry : assignments.entrySet()) {
 		    Variable key = entry.getKey();
 		    Object value = entry.getValue();

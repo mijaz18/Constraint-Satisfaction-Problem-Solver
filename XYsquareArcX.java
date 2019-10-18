@@ -12,15 +12,10 @@ public class XYsquareArcX extends Arcs {
 				int X= (int)a;
 				for(Object y: b.domains) {
 					int Y= (int) y;
-					//System.out.println("X: "+ X+ "Y: "+ Y);
 					if(Math.pow(X, 2)==Y) {
-						System.out.println("X: "+ X+ "Y: "+ Y);
-						System.out.println("true");
 						return true;
 					}
 				}
-				//System.out.println("X: "+ X+ "Y: "+ Y);
-				System.out.println("false");
 			return false;
 		}
 	

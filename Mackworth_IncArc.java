@@ -10,7 +10,6 @@ public class Mackworth_IncArc extends Arcs {
 	boolean consistencyCheck(Object a, Variable b, CSP csp) {
 		
 		for(Object c: b.domains) {
-			System.out.println("a: "+a+ "b: "+ c);
 			for(Constraint x: csp.constraints) {
 				if(a.equals(x.a) && c.equals(x.b)) {
 					if(a.equals("a") && (c.equals("b")|| c.equals("c"))){

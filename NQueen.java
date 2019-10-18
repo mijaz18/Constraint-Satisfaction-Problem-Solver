@@ -20,8 +20,20 @@ public class NQueen {
 			csp.variables.add(a);
 			csp.constraints.add(new nQueenConstraint(a,n));
 			}	
-		//System.out.println("dnwjfnwjdnw" +csp.constraints.size());
+		System.out.print("Variables: ");
+		for(Variable x: csp.variables) {
+			System.out.print(x.value+ " ");
+		}
+		System.out.println();
+		System.out.print("Domains: ");
+		for(Object x: domains) {
+			System.out.print(x+ " ");
+		}
 		
+		System.out.println();
+		
+		System.out.println("\n");
+		System.out.println("Solution: ");
 		Backtracking_Search bk=new Backtracking_Search();
 		Assignments assignments=new Assignments();
 		result=bk.backtrack(assignments, csp);

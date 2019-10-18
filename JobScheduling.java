@@ -10,7 +10,7 @@ public class JobScheduling {
 		Set<Constraint> constraints=new HashSet<Constraint>();
 		Assignments result=new Assignments();
 		CSP csp=new CSP(variables,constraints);
-		for(int i=1; i<=30;i++) {
+		for(int i=1; i<=27;i++) {
 			domains.add(i);
 		}
 		Variable Axle_f= new Variable("Axle_f",domains);
@@ -85,8 +85,25 @@ public class JobScheduling {
 		csp.constraints.add(new TimeConstraint(Wheel_lb,Inspect));
 		csp.constraints.add(new TimeConstraint(Axle_f,Inspect));
 		csp.constraints.add(new TimeConstraint(Axle_b,Inspect));
-		//csp.constraints.add(new TimeConstraint(Axle_b,Axle_f));
 		
+		System.out.print("Variables: ");
+		for(Variable x: csp.variables) {
+			System.out.print(x.value+ " ");
+		}
+		System.out.println();
+		System.out.print("Domains: ");
+		for(Object x: domains) {
+			System.out.print(x+ " ");
+		}
+		
+		System.out.println();
+		System.out.print("Constraints: ");
+		for(Constraint x: csp.constraints) {
+			System.out.print("{" +x.a.value+ ","+ x.b.value+ "}"+ " ");
+		}
+		
+		System.out.println("\n");
+		System.out.println("Solution: ");
 		Backtracking_Search bk=new Backtracking_Search();
 		Assignments assignments=new Assignments();
 		result=bk.backtrack(assignments, csp);

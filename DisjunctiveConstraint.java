@@ -3,7 +3,6 @@ import java.util.HashMap;
 public class DisjunctiveConstraint extends Constraint {
 	
 	public DisjunctiveConstraint(Variable a, Variable b) {
-		//super(a, b);
 		super.a=a;
 		super.b=b;
 		// TODO Auto-generated constructor stub
@@ -11,7 +10,6 @@ public class DisjunctiveConstraint extends Constraint {
 
 	@Override
 	boolean consistencyCheck(Object value, Constraint x, Variable var, HashMap<Variable, Object> assignments, CSP csp) {
-		//System.out.println("Variable name "+ var.value);
 		if(!a.equals(var) && !b.equals(var)) {
 			return true;
 		}else {

@@ -3,7 +3,6 @@ import java.util.HashMap;
 public class ColorConstraint extends Constraint {
 
 	public ColorConstraint(Variable a, Variable b) {
-		//super(a, b);
 		super.a=a;
 		super.b=b;
 		// TODO Auto-generated constructor stub

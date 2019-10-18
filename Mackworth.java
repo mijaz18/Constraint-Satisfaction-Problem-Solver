@@ -26,8 +26,6 @@ public class Mackworth {
 		csp.variables.add(X1);
 		csp.variables.add(X2);
 		csp.variables.add(X3);
-		//csp.variables.add(X4);
-		//csp.variables.add(X5);
 		csp.constraints.add(new LexicConstraint(X1,X3));
 		csp.constraints.add(new LexicConstraint(X2,X3));
 		csp.constraints.add(new LexicConstraint(X4,X4));
@@ -43,6 +41,29 @@ public class Mackworth {
 		csp.arcs.add(ar2);
 		csp.arcs.add(ar3);
 		csp.arcs.add(ar4);
+		System.out.print("Variables: ");
+		for(Variable x: csp.variables) {
+			System.out.print(x.value+ " ");
+		}
+		System.out.println();
+		System.out.print("Domain X: ");
+		for(Object x: domain12) {
+			System.out.print(x+ " ");
+		}
+		System.out.println();
+		System.out.print("Domain Y: ");
+		for(Object x: domain35) {
+			System.out.print(x+ " ");
+		}
+		
+		System.out.println();
+		System.out.print("Constraints: ");
+		for(Constraint x: csp.constraints) {
+			System.out.print("{" +x.a.value+ ","+ x.b.value+ "}"+ " ");
+		}
+		
+		System.out.println("\n");
+		System.out.println("Solution: ");
 		AC3 ac3=new AC3();
 		Assignments assignments=new Assignments();
 		result=ac3.backtrack(assignments, csp);

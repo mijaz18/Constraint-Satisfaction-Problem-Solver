@@ -36,6 +36,24 @@ public class AustraliaMapCSP {
 		csp.constraints.add(new ColorConstraint(NT,Q));
 		csp.constraints.add(new ColorConstraint(Q,NSW));
 		csp.constraints.add(new ColorConstraint(NSW,V));
+		System.out.print("Variables: ");
+		for(Variable x: csp.variables) {
+			System.out.print(x.value+ " ");
+		}
+		System.out.println();
+		System.out.print("Domains: ");
+		for(Object x: domains) {
+			System.out.print(x+ " ");
+		}
+		
+		System.out.println();
+		System.out.print("Constraints: ");
+		for(Constraint x: csp.constraints) {
+			System.out.print("{" +x.a.value+ ","+ x.b.value+ "}"+ " ");
+		}
+		
+		System.out.println("\n");
+		System.out.println("Solution: ");
 		Backtracking_Search bk=new Backtracking_Search();
 		Assignments assignments=new Assignments();
 		result=bk.backtrack(assignments, csp);
